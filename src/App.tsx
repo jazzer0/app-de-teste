@@ -54,7 +54,7 @@ function App() {
   return (
     <div id="container">
       <div id="titlebar">
-        <p>App de Todo</p>
+        <p>Lista de Afazeres</p>
       </div>
       <div id="content">
         <div id="todos">
