@@ -75,3 +75,34 @@
   transform: scale(1.02, 1.02);
   transition: 300ms;
 }
+
+.todoBotaoExcluir {
+  transition: 300ms;
+  color: gray;
+}
+
+.todoBotaoExcluir:hover {
+  color: red;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+#todosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#searchBarContainer {
+  display: flex;
+  padding: 0.5rem;
+  gap: 1rem;
+  background-color: aquamarine;
+  border-radius: 1rem;
+  width: 250px;
+}
+
+#searchInput {
+  display: flex;
+  width: 100%;
+}
