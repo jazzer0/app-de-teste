@@ -1,3 +1,19 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
-export const AppContext = createContext(null as any);
+interface ITodos {
+  id: number;
+  name: string;
+  done: boolean;
+}
+
+interface IAppContextData {
+  todos: ITodos[];
+  filteredTodos: ITodos[];
+}
+
+interface IAppContextType {
+  appContext: IAppContextData;
+  setAppContext: React.Dispatch<React.SetStateAction<IAppContextData>>;
+}
+
+export const AppContext = createContext<IAppContextType>(null as any);

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { IoIosCloseCircle } from "react-icons/io";
 import { IoMdTrash } from "react-icons/io";
+import { AppContext } from "../context/AppContext";
 
 interface iTodoProps {
   id: number;
@@ -11,6 +12,33 @@ interface iTodoProps {
 
 const Todo: React.FC<iTodoProps> = (props) => {
   const { id, name, done } = props;
+
+  const { appContext, setAppContext } = useContext(AppContext);
+
+  const toggleTodo = () => {
+    setAppContext((prev) => {
+      const updatedTodos = appContext.todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              done: !todo.done,
+            }
+          : todo
+      );
+
+      return {
+        todos: updatedTodos,
+        filteredTodos: updatedTodos,
+      };
+    });
+  };
+
+  const handleDeleteTodoOnClick = () => {
+    setAppContext({
+      ...appContext,
+      filteredTodos: appContext.filteredTodos.filter((todo) => todo.id !== id),
+    });
+  };
 
   return (
     <div className="todo">
@@ -28,9 +56,7 @@ const Todo: React.FC<iTodoProps> = (props) => {
         </div>
         <div
           style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-          onClick={() => {
-            alert("clicou");
-          }}
+          onClick={toggleTodo}
         >
           {done ? (
             <BsCheckCircleFill size={"1.3rem"} color="green" />
@@ -38,7 +64,7 @@ const Todo: React.FC<iTodoProps> = (props) => {
             <IoIosCloseCircle size={"1.3rem"} color="red" />
           )}
         </div>
-        <div>
+        <div onClick={handleDeleteTodoOnClick}>
           <IoMdTrash size={"1.3rem"} className="todoBotaoExcluir" />
         </div>
       </div>
