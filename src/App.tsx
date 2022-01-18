@@ -5,6 +5,7 @@ import TodosInfo from "./components/TodosInfo";
 import { AppContext } from "./context/AppContext";
 import { BsSearch } from "react-icons/bs";
 import { IoMdAddCircle } from "react-icons/io";
+import { AiFillCheckCircle } from "react-icons/ai";
 import { todos } from "./constants/todos";
 import AddTodo from "./components/AddTodo";
 
@@ -17,6 +18,7 @@ function App() {
   const [doneTodos, setDoneTodos] = useState(0);
   const [todoTodos, setTodoTodos] = useState(0);
   const [addTodoRender, setAddTodoRender] = useState(false);
+  const [novoTodoDescricao, setNovoTodoDescricao] = useState("");
 
   const getDoneTodos = () => {
     let contador = 0;
@@ -50,6 +52,20 @@ function App() {
 
   const handleToggleAddTodo = () => {
     setAddTodoRender((prev) => !prev);
+
+    if (addTodoRender) {
+      const novoTodo = {
+        id: Math.floor(Math.random() * 50),
+        name: novoTodoDescricao,
+        done: false,
+      };
+
+      setAppContext((prev) => ({
+        ...prev,
+        todos: [...prev.todos, novoTodo],
+        filteredTodos: [...prev.todos, novoTodo],
+      }));
+    }
   };
 
   useEffect(() => {
@@ -66,7 +82,7 @@ function App() {
         </div>
         <div id="content">
           {addTodoRender ? (
-            <AddTodo />
+            <AddTodo setNovoTodoDescricao={setNovoTodoDescricao} />
           ) : (
             <div id="todos">
               {appContext.filteredTodos.map((todo) => (
@@ -88,7 +104,11 @@ function App() {
                 }}
               />
               <div id="addButtonContainer" onClick={handleToggleAddTodo}>
-                <IoMdAddCircle size={"2.5rem"} color="white" />
+                {addTodoRender ? (
+                  <AiFillCheckCircle size={"2.5rem"} color="white" />
+                ) : (
+                  <IoMdAddCircle size={"2.5rem"} color="white" />
+                )}
               </div>
             </div>
 

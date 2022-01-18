@@ -34,9 +34,12 @@ const Todo: React.FC<iTodoProps> = (props) => {
   };
 
   const handleDeleteTodoOnClick = () => {
+    const filterTodo = appContext.filteredTodos.filter(
+      (todo) => todo.id !== id
+    );
     setAppContext({
-      ...appContext,
-      filteredTodos: appContext.filteredTodos.filter((todo) => todo.id !== id),
+      todos: filterTodo,
+      filteredTodos: filterTodo,
     });
   };
 

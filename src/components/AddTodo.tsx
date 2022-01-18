@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const AddTodo = () => {
-  const [todoDescricao, setTodoDescricao] = useState("");
+interface AddTodoRender {
+  setNovoTodoDescricao: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const AddTodo: React.FC<AddTodoRender> = (props) => {
+  const { setNovoTodoDescricao } = props;
 
   return (
     <div id="addTodoContainer">
@@ -10,9 +14,10 @@ const AddTodo = () => {
       </div>
 
       <input
+        id="addTodoInput"
         type="text"
         onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
-          setTodoDescricao(evt.target.value);
+          setNovoTodoDescricao(evt.target.value);
         }}
       />
     </div>
