@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 
 interface ITodos {
-  id: number;
+  id: string;
   name: string;
   done: boolean;
 }

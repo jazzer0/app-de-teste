@@ -8,6 +8,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { todos } from "./constants/todos";
 import AddTodo from "./components/AddTodo";
+import { v4 as uuidV4 } from "uuid";
 
 function App() {
   const [appContext, setAppContext] = useState({
@@ -53,9 +54,13 @@ function App() {
   const handleToggleAddTodo = () => {
     setAddTodoRender((prev) => !prev);
 
+    if (!novoTodoDescricao.length) {
+      return;
+    }
+
     if (addTodoRender) {
       const novoTodo = {
-        id: Math.floor(Math.random() * 50),
+        id: uuidV4(),
         name: novoTodoDescricao,
         done: false,
       };
@@ -65,6 +70,8 @@ function App() {
         todos: [...prev.todos, novoTodo],
         filteredTodos: [...prev.todos, novoTodo],
       }));
+
+      setNovoTodoDescricao("");
     }
   };
 

@@ -1,21 +1,23 @@
+import { v4 as uuidV4 } from "uuid";
+
 export const todos = [
   {
-    id: 0,
+    id: uuidV4(),
     name: "Estudar JS",
     done: true,
   },
   {
-    id: 1,
+    id: uuidV4(),
     name: "Fazer Compras",
     done: false,
   },
   {
-    id: 2,
+    id: uuidV4(),
     name: "Jogar CS",
     done: false,
   },
   {
-    id: 3,
+    id: uuidV4(),
     name: "Fazer Comida",
     done: false,
   },

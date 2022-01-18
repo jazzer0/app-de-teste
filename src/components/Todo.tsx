@@ -5,7 +5,7 @@ import { IoMdTrash } from "react-icons/io";
 import { AppContext } from "../context/AppContext";
 
 interface iTodoProps {
-  id: number;
+  id: string;
   name: string;
   done: boolean;
 }
@@ -45,10 +45,6 @@ const Todo: React.FC<iTodoProps> = (props) => {
 
   return (
     <div className="todo">
-      <div>
-        <p>ID: {id}</p>
-      </div>
-
       <div>
         <p>{name}</p>
       </div>
